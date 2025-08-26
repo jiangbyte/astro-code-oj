@@ -12,15 +12,6 @@ Languages:
     compileCmd: ["go", "build", "-o", "{exec}", "{source}"]
     runCmd: ["{exec}"]
   
-  - name: "python"
-    sourceFile: "Main"
-    compileFile: "Main"
-    defaultCompileTime: 500
-    defaultExecTime: 500
-    extension: ".py"
-    compileCmd: []
-    runCmd: ["python3", "{source}"]
-  
   - name: "java"
     sourceFile: "Main"
     compileFile: "Main"
@@ -47,6 +38,15 @@ Languages:
     extension: ".cpp"
     compileCmd: ["g++", "{source}", "-o", "{exec}"]
     runCmd: ["{exec}"]
+
+  - name: "python"
+    sourceFile: "Main"
+    compileFile: "Main"
+    defaultCompileTime: 500
+    defaultExecTime: 500
+    extension: ".py"
+    compileCmd: []
+    runCmd: ["python3", "{source}"]
 
 Workspace: "/tmp/judge_workspace/submissions"
 
