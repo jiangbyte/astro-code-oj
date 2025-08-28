@@ -142,10 +142,10 @@ app:
       - pdf
 
 easy-trans:
-  is-enable-redis: false
+  is-enable-redis: true
   is-enable-global: true
   is-enable-tile: true
-  dict-use-redis: false
+  dict-use-redis: true
   is-enable-custom-rpc: false
   is-enable-map-result: false
   db-type: mysql
