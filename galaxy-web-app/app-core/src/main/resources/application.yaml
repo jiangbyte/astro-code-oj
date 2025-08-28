@@ -6,8 +6,8 @@ spring:
     name: app-core
   profiles:
 #    active: @profiles.active@
-#    active: local
-    active: cloud
+    active: local
+#    active: cloud
 #    active: public
   cloud:
     nacos:
