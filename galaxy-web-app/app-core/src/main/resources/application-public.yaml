@@ -150,3 +150,8 @@ easy-trans:
   is-enable-map-result: false
   db-type: mysql
   mp-new: true
+
+# 临时文件目录
+java:
+  io:
+    tmpdir=/tmp
