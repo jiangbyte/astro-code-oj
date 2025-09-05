@@ -1,0 +1,157 @@
+server:
+  servlet:
+    context-path: /core
+  port: 29093
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/astro_code?serverTimezone=GMT%2B8&characterEncoding=UTF-8
+    username: root
+    password: 123456
+
+  data:
+    redis:
+      database: 1
+      host: localhost
+      port: 6379
+      # username: root
+      password: 123456
+      timeout: 10s
+      lettuce:
+        pool:
+          max-active: 200
+          max-wait: -1ms
+          max-idle: 10
+          min-idle: 0
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+      cache-null-values: true
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: 123456
+    virtual-host: /
+
+  ai:
+    dashscope:
+      api-key: ${DASHSCOPE_API_KEY}
+      chat:
+        options:
+          model: qwen-plus
+          temperature: 0.4
+
+sa-token:
+  token-name: Authorization
+  timeout: 2592000
+  active-timeout: -1
+  is-concurrent: true
+  is-share: false
+  token-style: random-64
+  is-log: true
+  is-read-cookie: false
+  is-print: false
+  alone-redis:
+    database: 2
+    host: localhost
+    port: 6379
+    password: 123456
+    timeout: 10s
+
+mybatis-plus:
+  mapper-locations: classpath*:io/charlie/app/core/**/xml/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    local-cache-scope: session
+    cache-enabled: true
+  global-config:
+    db-config:
+      id-type: assign_id
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    banner: false
+
+dubbo:
+  application:
+    qos-enable: false
+  protocol:
+    name: dubbo
+    port: -1
+    serialization: fastjson2
+  consumer:
+    timeout: 3000
+    check: false
+
+
+minio:
+  endpoint: http://localhost:9000
+  url: ${minio.endpoint}/${minio.bucket}/
+  access-key: admin
+  secret-key: securepassword123
+  bucket: default
+
+judge:
+  server:
+    user-source-dir: /zero_oj/user/source
+    user-report-dir: /zero_oj/user/report
+    user-library-dir: /zero_oj/user/library
+    max-concurrent-threads: 5
+    initial-concurrent-threads: 1
+
+app:
+  file:
+    upload-dir: ${user.home}/app/uploads  # 本地存储目录
+    base-url: http://localhost:29093/core/api/v1/sys/file # 返回的URL基础路径
+    max-file-size: 10MB                   # 单个文件最大大小
+    max-request-size: 20MB               # 请求最大大小
+    allowed-extensions:                   # 允许的文件扩展名
+      - jpg
+      - jpeg
+      - png
+      - gif
+      - pdf
+      - txt
+      - doc
+      - docx
+      - xls
+      - xlsx
+      - ppt
+      - pptx
+    previewable-extensions:               # 可预览的文件类型
+      - jpg
+      - jpeg
+      - png
+      - gif
+      - txt
+      - pdf
+
+easy-trans:
+  is-enable-redis: true
+  is-enable-global: true
+  is-enable-tile: true
+  dict-use-redis: true
+  is-enable-custom-rpc: false
+  is-enable-map-result: false
+  db-type: mysql
+  mp-new: true
+
+# 临时文件目录
+java:
+  io:
+    tmpdir=/tmp

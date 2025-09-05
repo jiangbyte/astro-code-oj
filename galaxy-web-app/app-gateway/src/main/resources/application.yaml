@@ -1,0 +1,35 @@
+server:
+  port: 29093
+
+spring:
+  application:
+    name: app-gateway
+  profiles:
+    active: @profiles.active@
+  cloud:
+    nacos:
+      server-addr: @nacos.server-addr@
+      username: @nacos.username@
+      password: @nacos.password@
+      discovery:
+        group: @nacos.discovery.group@
+        namespace: @nacos.discovery.namespace@
+        ephemeral: false # false 永久实例，true 临时实例
+      config:
+        group: @nacos.config.group@
+        namespace: @nacos.config.namespace@
+  config:
+    import:
+      - optional:nacos:astro-code-common.yaml
+      - optional:nacos:${spring.application.name}.yaml
+
+dubbo:
+  registry:
+    address: nacos://@nacos.server-addr@
+    username: @nacos.username@
+    password: @nacos.password@
+    parameters:
+      namespace: @nacos.discovery.group@
+logging:
+  level:
+    org.springframework.cloud.gateway: debug

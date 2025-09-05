@@ -1,0 +1,69 @@
+Name: judge-service
+Host: 0.0.0.0
+Port: 8888
+
+Languages:
+  - name: "go"
+    sourceFile: "Main"
+    compileFile: "Main"
+    defaultCompileTime: 500
+    defaultExecTime: 500
+    extension: ".go"
+    compileCmd: ["go", "build", "-o", "{exec}", "{source}"]
+    runCmd: ["{exec}"]
+  
+  - name: "java"
+    sourceFile: "Main"
+    compileFile: "Main"
+    defaultCompileTime: 500
+    defaultExecTime: 500
+    extension: ".java"
+    compileCmd: ["javac", "{source}"]
+    runCmd: ["java", "-cp", "{exec}", "Main"]
+  
+  - name: "c"
+    sourceFile: "Main"
+    compileFile: "Main"
+    defaultCompileTime: 500
+    defaultExecTime: 500
+    extension: ".c"
+    compileCmd: ["gcc", "{exec}", "-o", "{output}"]
+    runCmd: ["{exec}"]
+  
+  - name: "cpp"
+    sourceFile: "Main"
+    compileFile: "Main"
+    defaultCompileTime: 500
+    defaultExecTime: 500
+    extension: ".cpp"
+    compileCmd: ["g++", "{source}", "-o", "{exec}"]
+    runCmd: ["{exec}"]
+
+  - name: "python"
+    sourceFile: "Main"
+    compileFile: "Main"
+    defaultCompileTime: 500
+    defaultExecTime: 500
+    extension: ".py"
+    compileCmd: []
+    runCmd: ["python3", "{source}"]
+
+Workspace: "/tmp/judge_workspace/submissions"
+
+RabbitMQ:
+  Host: "amqp://root:123456@localhost:5672/"
+  VirtualHost: "/"
+  Problems:
+    JudgeExchange: "problem.judge.exchange"
+    JudgeQueue: "problem.judge.queue"
+    JudgeRoutingKey: "problem.judge.routing.key"
+    ResultExchange: "problem.judge.result.exchange"
+    ResultQueue: "problem.judge.result.queue"
+    ResultRoutingKey: "problem.judge.result.routing.key"
+  Sets:
+    JudgeExchange: "set.judge.exchange"
+    JudgeQueue: "set.judge.queue"
+    JudgeRoutingKey: "set.judge.routing.key"
+    ResultExchange: "set.result.exchange"
+    ResultQueue: "set.result.queue"
+    ResultRoutingKey: "set.result.routing.key"
