@@ -1,12 +1,12 @@
 server:
-  port: 83
+  port: 89
 
 spring:
   application:
     name: app-core
-  profiles:
+#  profiles:
 #    active: @profiles.active@
-    active: local
+#    active: local
 #    active: cloud
 #    active: public
   cloud:
