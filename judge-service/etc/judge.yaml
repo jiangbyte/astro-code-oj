@@ -67,3 +67,10 @@ RabbitMQ:
     ResultExchange: "set.result.exchange"
     ResultQueue: "set.result.queue"
     ResultRoutingKey: "set.result.routing.key"
+  Common:
+    JudgeExchange: "common.judge.exchange"
+    JudgeQueue: "common.judge.queue"
+    JudgeRoutingKey: "common.judge.routing"
+    ResultExchange: "common.judge.result.exchange"
+    ResultQueue: "common.judge.result.queue"
+    ResultRoutingKey: "common.judge.result.routing"
